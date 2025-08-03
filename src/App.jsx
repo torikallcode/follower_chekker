@@ -61,7 +61,7 @@ function App() {
     }
 
     setIsProcessing(true);
-    
+
     try {
       const followersMap = new Map();
       followersData.forEach((wrapper) => {
@@ -74,8 +74,8 @@ function App() {
       followingData.relationships_following.forEach((wrapper) => {
         wrapper.string_list_data.forEach((item) => {
           if (!followersMap.has(item.value)) {
-            notFollow.push({ 
-              username: item.value, 
+            notFollow.push({
+              username: item.value,
               href: item.href,
               timestamp: item.timestamp ? new Date(item.timestamp * 1000) : null
             });
@@ -97,14 +97,14 @@ function App() {
   // Filter and sort effects
   useEffect(() => {
     let result = notFollowBack;
-    
+
     // Apply search filter
     if (searchTerm) {
-      result = result.filter(item => 
+      result = result.filter(item =>
         item.username.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
+
     // Apply sorting
     if (sortConfig.key) {
       result = [...result].sort((a, b) => {
@@ -117,7 +117,7 @@ function App() {
         return 0;
       });
     }
-    
+
     setFilteredNotFollowBack(result);
   }, [searchTerm, notFollowBack, sortConfig]);
 
@@ -230,11 +230,11 @@ function App() {
                     <div className="flex items-center">
                       <label className="flex-1 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <span>{followersData ? 'Change file' : 'Select file'}</span>
-                        <input 
-                          type="file" 
-                          accept=".json" 
-                          onChange={(e) => handleSelectFile(e, 'followers')} 
-                          className="sr-only" 
+                        <input
+                          type="file"
+                          accept=".json"
+                          onChange={(e) => handleSelectFile(e, 'followers')}
+                          className="sr-only"
                         />
                       </label>
                     </div>
@@ -249,11 +249,11 @@ function App() {
                     <div className="flex items-center">
                       <label className="flex-1 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <span>{followingData ? 'Change file' : 'Select file'}</span>
-                        <input 
-                          type="file" 
-                          accept=".json" 
-                          onChange={(e) => handleSelectFile(e, 'following')} 
-                          className="sr-only" 
+                        <input
+                          type="file"
+                          accept=".json"
+                          onChange={(e) => handleSelectFile(e, 'following')}
+                          className="sr-only"
                         />
                       </label>
                     </div>
@@ -451,6 +451,7 @@ function App() {
         {/* Footer */}
         <div className="mt-8 text-sm text-center text-gray-500">
           <p>This tool works entirely in your browser. Your data is never uploaded to any server.</p>
+          <p>@_torikal</p>
         </div>
       </div>
     </div>
